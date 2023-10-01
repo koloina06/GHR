@@ -1,5 +1,6 @@
 ﻿using GRH.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 
 namespace GRH.Controllers
@@ -16,6 +17,19 @@ namespace GRH.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult NoteCv()
+        {
+            SqlConnection co = null;
+            Cv cv = new Cv();
+            var list = cv.getCv(co, 1);
+            var listeTriee = list.OrderByDescending(cv => cv.client.note).ToList();
+            if (co != null)
+            {
+                co.Close();
+            }
+            return View(listeTriee);
         }
 
         public IActionResult Privacy()

@@ -16,5 +16,6 @@
             this.coef = coef;
             this.annonce = annonce;
         }
+
     }
 }

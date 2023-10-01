@@ -1,6 +1,7 @@
 ﻿using GRH.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.Data.SqlClient;
 
 namespace GRH.Controllers
 {
@@ -15,7 +16,11 @@ namespace GRH.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            SqlConnection con = Connect.connectDB();
+            List<SousCritere> allS = SousCritere.getByIdCritere(con,1);
+            @ViewBag.allS = allS;
+            @ViewBag.c = con;
+            return View("~/Views/Home/Index.cshtml");
         }
 
         public IActionResult Privacy()
@@ -28,5 +33,7 @@ namespace GRH.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+      
     }
 }

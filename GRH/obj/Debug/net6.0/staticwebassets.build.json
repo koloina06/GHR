@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "D4yBJXWKJRuesXLzwu+VQSWgWGNn/3uVxlNWQQOC3iw=",
+  "Hash": "u3fKbieyV32fP6AhfjJRychiKAQHRPDpVITcRlr0OB0=",
   "Source": "GRH",
   "BasePath": "_content/GRH",
   "Mode": "Default",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\Login.jpg",
+      "SourceId": "GRH",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\",
+      "BasePath": "_content/GRH",
+      "RelativePath": "Image/Login.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\Login.jpg"
     },
     {
       "Identity": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\CreateAnnonce\\stepByStep.js",

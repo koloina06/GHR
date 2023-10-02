@@ -52,7 +52,7 @@ namespace GRH.Controllers
             int tache = int.Parse(Request.Form["tache"]);
             int jh = int.Parse(Request.Form["jourHomme"]);
 
-            Annonce a = new Annonce(1,Postes.getById(idPoste,co),desc,tache,jh,DateTime.Now,1);
+            Annonce a = new Annonce(1,Postes.getById(idPoste,co),desc,tache,jh,DateTime.Now,0);
             
             a.Insert(co);
             

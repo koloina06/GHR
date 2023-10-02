@@ -127,5 +127,44 @@ namespace GRH.Models
             return null; // Retournez null si aucune annonce n'a été trouvée
         }
 
+        public static List<Annonce> getAllAnnonce(SqlConnection con)
+        {
+            var annonces = new List<Annonce>();
+            List<int> allIdPost = new List<int>();
+            if (con.State != ConnectionState.Open)
+            {
+                con = Connect.connectDB();
+            }
+            using (var connection = con)
+            {
+                var command = new SqlCommand("SELECT *,volumeTache/volumeJourHomme recru FROM Annonce", connection);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var ann = new Annonce()
+                        {
+                            idAnnonce = (int)reader["idAnnonce"],
+                            descriptions = (String)reader["descriptions"],
+                            volumeTaches = (int)reader["volumeTache"],
+                            volumeJourHomme = (int)reader["volumeJourHomme"],
+                            dateAnnonce = (DateTime)reader["dateAnnonce"],
+                            etat = (int)reader["etat"],
+                            nombreRecrue = (int)reader["recru"]
+                        };
+                        annonces.Add(ann);
+                        allIdPost.Add((int)reader["idPoste"]);
+                    }
+                    reader.Close();
+                    int count = 0;    
+                    foreach (Annonce a in annonces)
+                    {
+                        a.postes = Postes.getById(allIdPost[count],con);
+                        count++;
+                    }
+                }
+            }
+            return annonces;           
+        }
     }
 }

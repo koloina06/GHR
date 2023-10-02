@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\GRH.bundle.scp.css"
     },
     {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\Login.jpg",
+      "PackagePath": "staticwebassets\\Image\\Login.jpg"
+    },
+    {
       "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\CreateAnnonce.css",
       "PackagePath": "staticwebassets\\css\\CreateAnnonce.css"
     },

@@ -129,5 +129,29 @@ namespace GRH.Models
             }
             return null; // Retourne null si aucun sous-critère avec cet ID n'a été trouvé.
         }
+        public List<SousCritere> getDetailsByCv(SqlConnection co, int idCv)
+        {
+            if (co == null)
+            {
+                co = Connect.connectDB();
+            }
+            Critere critere = null;
+            SousCritere sousCritere = null;
+            List<SousCritere> list= new List<SousCritere>();
+            SqlCommand command = new SqlCommand("SELECT * FROM v_detailcv where idCv=" + idCv + "", co);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int idCritere = (int)reader["idCritere"];
+                string nomCritere = (string)reader["nomCritere"];
+                critere= new Critere(idCritere, nomCritere);
+                int idSousCritere = (int)reader["idSousCritere"];
+                string nomSousCritere = (string)reader["nomSousCritere"];
+                sousCritere = new SousCritere(idSousCritere, critere, nomSousCritere);
+                list.Add(sousCritere);          
+            }
+            reader.Close();
+            return list;
+        }
     }
 }

@@ -61,7 +61,7 @@ namespace GRH.Models
             
             int note = 0;
             
-            SqlCommand command = new SqlCommand("select * from v_noteCv where idCv="+idCv+"",co);
+            SqlCommand command = new SqlCommand("select sum(coeff) somme FROM detailsCV dc join cv on dc.idCv=cv.idCv JOIN critereCoef cc on dc.idSousCritere=cc.idSousCritere where cv.idAnnonce="+idAnnonce+" and cc.idAnnonce="+idAnnonce+" and cv.idAnnonce="+idAnnonce+"and cv.idCv="+idCv+" group by cv.idCv",co);
             
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -90,7 +90,6 @@ namespace GRH.Models
             reader.Close();
             return pdf;
         }
-
         public List<Cv> getCv(SqlConnection co,int idAnnonce)
         {
             if (co == null)
@@ -108,7 +107,7 @@ namespace GRH.Models
                 Cv cv = new Cv();
                 cv.idCv= idCv[i];
                 client= client.getClientAnnonceByCv(co, idAnnonce, idCv[i]);
-                client.note = cv.getNoteCv(co, idCv[i])+client.getNoteSexe(co,idAnnonce);
+                client.note = cv.getNoteCv(co, idCv[i],idAnnonce)+client.getNoteSexe(co,idAnnonce);
                 
                 cv.client= client;
                 details= sousCritere.getDetailsByCv(co, idCv[i]);
@@ -120,5 +119,39 @@ namespace GRH.Models
             }
             return list;
         }
+        
+        //Enregistrer les notes dans la table note
+        public static void SaveNoteCv(SqlConnection co,int idAnnonce)
+        {
+            if (co == null)
+            {
+                co = Connect.connectDB();
+            }
+            List<Cv> list = new List<Cv>();
+            Cv cv1= new Cv();
+            List<int> idCv= cv1.listeCvByAnnonce(co,idAnnonce);
+            Clients client = new Clients();
+            SousCritere sousCritere = new SousCritere();
+            List<SousCritere> details= new List<SousCritere>();
+            for(int i=0; i<idCv.Count; i++)
+            {
+                Cv cv = new Cv();
+                cv.idCv= idCv[i];
+                client= client.getClientAnnonceByCv(co, idAnnonce, idCv[i]);
+                client.note = cv.getNoteCv(co, idCv[i],idAnnonce)+client.getNoteSexe(co,idAnnonce);
+                
+                
+                
+                cv.client= client;
+                details= sousCritere.getDetailsByCv(co, idCv[i]);
+                cv.sousCritere= details;
+                String[] pdf = cv.getPDF(co, idCv[i]);
+                cv.pdfDiplome = pdf[0];
+                cv.pdfAttestation = pdf[1];
+                list.Add(cv);
+            }
+            
+        }
+        
     }
 }

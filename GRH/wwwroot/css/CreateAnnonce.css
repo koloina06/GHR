@@ -77,6 +77,10 @@
 }
 
 /* Style pour le bouton Submit */
+
+.ss{
+    font-family: monospace;
+}
 .submit-button {
     display: block;
     margin: 0 auto;

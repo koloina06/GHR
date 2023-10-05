@@ -34,7 +34,7 @@ namespace GRH.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult NoteCv()
+        public IActionResult Choice()
         {
             SqlConnection co = Connect.connectDB();
             Cv cv = new Cv();
@@ -42,7 +42,23 @@ namespace GRH.Controllers
             int idAnnonce = int.Parse(Request.Query["idAnnonce"]);
             var list = cv.getCv(co, idAnnonce);
             
+            var listeTriee = list.OrderByDescending(cv => cv.client.note).ToList();
+            if (co != null)
+            {
+                co.Close();
+            }
             
+            Console.WriteLine(listeTriee);
+            @ViewBag.idAnnonce = idAnnonce;
+            return View("~/Views/Home/ChoiceDetails.cshtml");
+        }
+        public IActionResult NoteCv()
+        {
+            SqlConnection co = Connect.connectDB();
+            Cv cv = new Cv();
+
+            int idAnnonce = int.Parse(Request.Query["idAnnonce"]);
+            var list = cv.getCv(co, idAnnonce);
             
             var listeTriee = list.OrderByDescending(cv => cv.client.note).ToList();
             if (co != null)
@@ -55,6 +71,44 @@ namespace GRH.Controllers
             return View("~/Views/Home/NoteCv.cshtml");
         }
 
+        
+        public IActionResult NoteTest()
+        {
+            SqlConnection co = Connect.connectDB();
+            Cv cv = new Cv();
+
+            int idAnnonce = int.Parse(Request.Query["idAnnonce"]);
+            var list = cv.getCv(co, idAnnonce);
+            
+            var listeTriee = list.OrderByDescending(cv => cv.client.note).ToList();
+            if (co != null)
+            {
+                co.Close();
+            }
+            
+            Console.WriteLine(listeTriee);
+            @ViewBag.allCv = listeTriee;
+            return View("~/Views/Home/NoteCv.cshtml");
+        }
+        
+        public IActionResult NoteEntretien()
+        {
+            SqlConnection co = Connect.connectDB();
+            Cv cv = new Cv();
+
+            int idAnnonce = int.Parse(Request.Query["idAnnonce"]);
+            var list = cv.getCv(co, idAnnonce);
+            
+            var listeTriee = list.OrderByDescending(cv => cv.client.note).ToList();
+            if (co != null)
+            {
+                co.Close();
+            }
+            
+            Console.WriteLine(listeTriee);
+            @ViewBag.allCv = listeTriee;
+            return View("~/Views/Home/NoteCv.cshtml");
+        }
         public IActionResult getAllAnnonce()
         {
             SqlConnection con = Connect.connectDB();   
@@ -78,7 +132,6 @@ namespace GRH.Controllers
             {
                 res = getAll;
             }
-           
             @ViewBag.allA = res;
 
            

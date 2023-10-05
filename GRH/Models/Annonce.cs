@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
-
+        
 namespace GRH.Models
 {
     public class Annonce
@@ -14,6 +14,10 @@ namespace GRH.Models
         int nombreRecrue;
         public DateTime dateAnnonce { get; set; }
         public int etat { get; set; }
+        
+        //Durée (Determiné , indeterminé , temporaire)
+        
+        //Resaka periode d'essai 
 
         public void setNombreRecrue ()
         {
@@ -110,7 +114,6 @@ namespace GRH.Models
                             dateAnnonce = (DateTime)reader["dateAnnonce"],
                             etat = (int)reader["etat"]
                         };
-
                         return lastAnnonce;
                     }
                 }
@@ -119,14 +122,12 @@ namespace GRH.Models
             {
                 Console.WriteLine("Erreur lors de la récupération de la dernière annonce : " + ex.Message);
             }
-            finally
+            finally  
             {
                 connection.Close();
             }
-
             return null; // Retournez null si aucune annonce n'a été trouvée
         }
-
         public static List<Annonce> getAllAnnonce(SqlConnection con)
         {
             var annonces = new List<Annonce>();
@@ -139,7 +140,7 @@ namespace GRH.Models
             {
                 var command = new SqlCommand("SELECT *,volumeTache/volumeJourHomme recru FROM Annonce", connection);
                 using (var reader = command.ExecuteReader())
-                {
+                { 
                     while (reader.Read())
                     {
                         var ann = new Annonce()
@@ -153,7 +154,7 @@ namespace GRH.Models
                             nombreRecrue = (int)reader["recru"]
                         };
                         annonces.Add(ann);
-                        allIdPost.Add((int)reader["idPoste"]);
+                         allIdPost.Add((int)reader["idPoste"]);
                     }
                     reader.Close();
                     int count = 0;    

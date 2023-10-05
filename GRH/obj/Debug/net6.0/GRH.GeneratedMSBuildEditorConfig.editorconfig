@@ -24,8 +24,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOb3RlQ3YuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/S5/Mr Tovo/GRH/Views/Home/PassageTest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQYXNzYWdlVGVzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/S5/Mr Tovo/GRH/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/S5/Mr Tovo/GRH/Views/Home/QCM.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxRQ00uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/S5/Mr Tovo/GRH/Views/Shared/Error.cshtml]

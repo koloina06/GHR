@@ -53,7 +53,7 @@ namespace GRH.Models
             return list;
         }
 
-        public int getNoteCv(SqlConnection co, int idCv)
+        public int getNoteCv(SqlConnection co, int idCv, int idAnnonce)
         {
             if (co == null)
             {
@@ -61,7 +61,8 @@ namespace GRH.Models
                 co = new_co.connectDB();
             }
             int note = 0;
-            SqlCommand command = new SqlCommand("select * from v_noteCv where idCv="+idCv+"",co);
+            String querry = "select sum(coef) somme from detailscv dc join cv on dc.idcv=cv.idcv join criterecoef cc on dc.idSousCritere=cc.idsouscritere where cv.idannonce=" + idAnnonce + " and cc.idannonce=" + idAnnonce + " and cv.idcv=" + idCv + " group by cv.idcv";
+            SqlCommand command = new SqlCommand(querry, co);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -103,21 +104,36 @@ namespace GRH.Models
             Clients client = new Clients();
             SousCritere sousCritere = new SousCritere();
             List<SousCritere> details= new List<SousCritere>();
+            Annonce annonce= new Annonce();
             for(int i=0; i<idCv.Count; i++)
             {
                 Cv cv = new Cv();
                 cv.idCv= idCv[i];
                 client= client.getClientAnnonceByCv(co, idAnnonce, idCv[i]);
-                client.note= cv.getNoteCv(co, idCv[i])+client.getNoteSexe(co,idAnnonce);
+                client.note= cv.getNoteCv(co, idCv[i], idAnnonce)+client.getNoteSexe(co,idAnnonce);
                 cv.client= client;
                 details= sousCritere.getDetailsByCv(co, idCv[i]);
                 cv.sousCritere= details;
                 String[] pdf = cv.getPDF(co, idCv[i]);
                 cv.pdfDiplome = pdf[0];
                 cv.pdfAttestation = pdf[1];
+                cv.annonce = annonce.getAnnonce(co, idAnnonce);
                 list.Add(cv);
             }
             return list;
+        }
+
+        public void insertNoteCV(SqlConnection co,int idCv, int note)
+        {
+            if (co == null)
+            {
+                Connect new_co = new Connect();
+                co = new_co.connectDB();
+            }
+            String querry = "insert into note values(" + idCv + "," + note + ",0,0)";
+            Console.WriteLine(querry);
+            SqlCommand command = new SqlCommand(querry, co);
+            command.ExecuteNonQuery();
         }
     }
 }

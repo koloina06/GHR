@@ -96,5 +96,19 @@ namespace GRH.Models
             reader.Close();
             return note;
         }
+
+        public void passageTest(SqlConnection co, String dateTest,int idClient)
+        {
+            if (co == null)
+            {
+                Connect new_co = new Connect();
+                co = new_co.connectDB();
+            }
+            DateTime newDate= DateTime.Parse(dateTest);
+            String querry = "update etatClient set dateteste='" + newDate + "',etat=1 where idClient=" + idClient + "";
+            Console.WriteLine(querry);
+            SqlCommand command = new SqlCommand(querry, co);
+            command.ExecuteNonQuery();
+        }
     }
 }

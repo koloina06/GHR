@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\S5\\Mr Tovo\\GRH\\GRH.csproj": {}
+    "D:\\s5\\gestion\\GRH\\GRH\\GRH.csproj": {}
   },
   "projects": {
-    "D:\\S5\\Mr Tovo\\GRH\\GRH.csproj": {
+    "D:\\s5\\gestion\\GRH\\GRH\\GRH.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\S5\\Mr Tovo\\GRH\\GRH.csproj",
+        "projectUniqueName": "D:\\s5\\gestion\\GRH\\GRH\\GRH.csproj",
         "projectName": "GRH",
-        "projectPath": "D:\\S5\\Mr Tovo\\GRH\\GRH.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\S5\\Mr Tovo\\GRH\\obj\\",
+        "projectPath": "D:\\s5\\gestion\\GRH\\GRH\\GRH.csproj",
+        "packagesPath": "C:\\Users\\P15B-54-Toky\\.nuget\\packages\\",
+        "outputPath": "D:\\s5\\gestion\\GRH\\GRH\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\P15B-54-Toky\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -55,8 +55,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -68,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -8,7 +8,7 @@ namespace GRH.Models
         {
 
             var datasource = @".\sqlexpress";
-            var database = "grh";
+            var database = "GRH";
 
             string connString = @"Data Source=" + datasource + ";Initial Catalog="
                         + database + ";Persist Security Info=True; Trusted_Connection=True; TrustServerCertificate=True";

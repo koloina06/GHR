@@ -65,13 +65,13 @@ namespace GRH.Models
                               descriptions = (string)reader["descriptions"],
                               volumeJourHomme = (int)reader["volumeJourHomme"],
                               volumeTaches = (int)reader["volumeTache"],
-                               postes = Postes.getPostebyAnnonce(co, (int)reader["idAnnonce"])
-                            
-                                
+                              postes = Postes.getPostebyAnnonce(null, (int)reader["idAnnonce"])                                
                             };
 
-                            annonces.Add(annonce);
+                        annonce.postes = annonce.postes ?? new Postes();
+                        annonces.Add(annonce);
                         }
+                    reader.Close();
                     }
                 }
             

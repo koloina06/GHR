@@ -29,28 +29,71 @@ namespace GRH.Models
         }
 
 
+        //public static Postes getPostebyAnnonce(SqlConnection co, int idAnnonce)
+        //{
+        //    if (co == null)
+        //    {
+        //        Connect new_co = new Connect();
+        //        co = new_co.connectDB();
+        //    }
+        //    Postes poste = new Postes();
+        //    Services service = null;
+
+        //    String sql = "SELECT * FROM v_posteAnnonce WHERE idAnnonce = " + idAnnonce;
+        //    Console.WriteLine(sql);
+        //    SqlCommand command = new SqlCommand(sql, co);
+        //    SqlDataReader reader = command.ExecuteReader();
+        //    while (reader.Read())
+        //    {
+        //        int idPoste = (int)reader["idPoste"];
+        //        String nomPoste = (string)reader["nomPoste"];
+        //        poste = new Postes(idPoste, nomPoste);
+        //    }
+        //    reader.Close();
+        //    return poste;
+        //}
+
+
         public static Postes getPostebyAnnonce(SqlConnection co, int idAnnonce)
         {
-            if (co == null)
-            {
-                Connect new_co = new Connect();
-                co = new_co.connectDB();
-            }
-            Postes poste = new Postes();
-            Services service = null;
+            Postes poste = null;
 
-            String sql = "SELECT * FROM v_posteAnnonce WHERE idAnnonce = " + idAnnonce;
-            Console.WriteLine(sql);
-            SqlCommand command = new SqlCommand(sql, co);
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                int idPoste = (int)reader["idposte"];
-                String nomPoste = (string)reader["nomPoste"];
-                poste = new Postes(idPoste, nomPoste);
+                if (co == null)
+                {
+                    Connect new_co = new Connect();
+                    co = new_co.connectDB();
+                }
+
+                String sql = "SELECT * FROM v_posteAnnonce WHERE idAnnonce = @idAnnonce";
+                SqlCommand command = new SqlCommand(sql, co);
+                command.Parameters.AddWithValue("@idAnnonce", idAnnonce);
+
+                SqlDataReader reader = command.ExecuteReader();
+                
+                if (reader.Read())
+                {
+                    Services services = new Services();
+
+                    int idPoste = (int)reader["idPoste"];
+                    String nomPoste = (string)reader["nomPoste"];
+                    services = services.getServiceByPoste(null, idPoste);
+
+
+                    poste = new Postes(idPoste, nomPoste);
+                    poste.service = services;
+                }
+
+                reader.Close();
             }
-            reader.Close();
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred while getting Poste by Annonce: " + ex.Message);
+            }
+
             return poste;
         }
+
     }
 }

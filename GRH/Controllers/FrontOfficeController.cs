@@ -34,6 +34,23 @@ namespace GRH.Controllers
 
         public IActionResult Cv()
         {
+            SqlConnection co = new Connect().connectDB();
+            Critere critere = new Critere();
+            SousCritere sousCritere = new SousCritere();
+
+            if (co != null)
+            {
+                co.Close();
+            }
+            var listCritere = critere.GetAllCritere(null);
+          //var listSousCritere = sousCritere.GetAllSousCriteres(co);
+
+
+
+            @ViewBag.listCritere = listCritere;
+
+            Console.WriteLine(listCritere);
+         //   @ViewBag.listSousCritere = listSousCritere;
             return View();
         }
     }

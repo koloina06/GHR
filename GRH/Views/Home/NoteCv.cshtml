@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     Layout = "~/Views/Shared/BackOfficeAccueil.cshtml";
 }
 <link rel="stylesheet" type="text/css" href="css/CreateAnnonce.css"/>
@@ -8,13 +9,34 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="p-5 form-container">
-                 <h1>Liste des CV</h1>
-                    <form action="" method="post">
-                        <label for="dateTest">Date de test :</label>
-                        <input type="datetime-local" id="dateTest" name="dateTest">
-                        <button type="button" class="btn btn-primary">Envoyer le test</button>
-                    </form>
+                    <h1>Liste des CV postulé</h1>
+                    @if (@ViewBag.ann.etat == 0)
+                    {
+                        <label for="numero">Coefficient passage test :</label>
+                        <input type="number" id="numero">
+                        <p>Nombre de recrue: @ViewBag.ann.getNombreRecrue()</p>
+                        <button onclick="calculer()">Calculer</button>
+                        <p id="resultat"></p>
                    
+                        <script>
+                             function calculer() {
+                                 var numero = parseFloat(document.getElementById("numero").value);
+                                 var resultat = Math.round(numero * @ViewBag.ann.getNombreRecrue());
+                                 document.getElementById("resultat").textContent = "Nombre de cv pouvant faire le test : " + resultat;
+                                 document.getElementById("resultatHidden").value = resultat;
+                             }
+                           </script>
+                   
+                   
+                        <form action="https://localhost:7248/Home/PassageTest/" method="post">
+                            <input type="hidden" name="nbrtest" id="resultatHidden" value="" />
+                            <input type="hidden" name="idAnnonce" value=" @ViewBag.ann.idAnnonce"/>
+                            <label for="dateTest">Date de test :</label> 
+                            <input type="datetime-local" id="dateTest" name="dateTest">
+                            <button type="submit" class="btn btn-primary">Envoyer le test</button>
+                        </form>
+                    
+                    }
                     <table class="table table-hover">
                         <thead>
                         <tr>

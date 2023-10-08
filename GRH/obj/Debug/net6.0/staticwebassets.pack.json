@@ -5,12 +5,204 @@
       "PackagePath": "staticwebassets\\GRH.bundle.scp.css"
     },
     {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-brands-400.eot",
+      "PackagePath": "staticwebassets\\Fonts\\fa-brands-400.eot"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-brands-400.svg",
+      "PackagePath": "staticwebassets\\Fonts\\fa-brands-400.svg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\Fonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-brands-400.woff",
+      "PackagePath": "staticwebassets\\Fonts\\fa-brands-400.woff"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\Fonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-regular-400.eot",
+      "PackagePath": "staticwebassets\\Fonts\\fa-regular-400.eot"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-regular-400.svg",
+      "PackagePath": "staticwebassets\\Fonts\\fa-regular-400.svg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\Fonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-regular-400.woff",
+      "PackagePath": "staticwebassets\\Fonts\\fa-regular-400.woff"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\Fonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-solid-900.eot",
+      "PackagePath": "staticwebassets\\Fonts\\fa-solid-900.eot"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-solid-900.svg",
+      "PackagePath": "staticwebassets\\Fonts\\fa-solid-900.svg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\Fonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-solid-900.woff",
+      "PackagePath": "staticwebassets\\Fonts\\fa-solid-900.woff"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\Fonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\glyphicons-halflings-regular.eot",
+      "PackagePath": "staticwebassets\\Fonts\\glyphicons-halflings-regular.eot"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\glyphicons-halflings-regular.svg",
+      "PackagePath": "staticwebassets\\Fonts\\glyphicons-halflings-regular.svg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\glyphicons-halflings-regular.ttf",
+      "PackagePath": "staticwebassets\\Fonts\\glyphicons-halflings-regular.ttf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\glyphicons-halflings-regular.woff",
+      "PackagePath": "staticwebassets\\Fonts\\glyphicons-halflings-regular.woff"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Fonts\\glyphicons-halflings-regular.woff2",
+      "PackagePath": "staticwebassets\\Fonts\\glyphicons-halflings-regular.woff2"
+    },
+    {
       "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\Login.jpg",
       "PackagePath": "staticwebassets\\Image\\Login.jpg"
     },
     {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\article-details-large.jpg",
+      "PackagePath": "staticwebassets\\Image\\article-details-large.jpg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\article-details-small.jpg",
+      "PackagePath": "staticwebassets\\Image\\article-details-small.jpg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\decoration-lines.svg",
+      "PackagePath": "staticwebassets\\Image\\decoration-lines.svg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\details-1.svg",
+      "PackagePath": "staticwebassets\\Image\\details-1.svg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\details-2.png",
+      "PackagePath": "staticwebassets\\Image\\details-2.png"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\details-modal.jpg",
+      "PackagePath": "staticwebassets\\Image\\details-modal.jpg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\down-arrow.png",
+      "PackagePath": "staticwebassets\\Image\\down-arrow.png"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\favicon.png",
+      "PackagePath": "staticwebassets\\Image\\favicon.png"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\header-illustration.svg",
+      "PackagePath": "staticwebassets\\Image\\header-illustration.svg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\logo.svg",
+      "PackagePath": "staticwebassets\\Image\\logo.svg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\testimonial-1.jpg",
+      "PackagePath": "staticwebassets\\Image\\testimonial-1.jpg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\testimonial-2.jpg",
+      "PackagePath": "staticwebassets\\Image\\testimonial-2.jpg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\testimonial-3.jpg",
+      "PackagePath": "staticwebassets\\Image\\testimonial-3.jpg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\testimonial-4.jpg",
+      "PackagePath": "staticwebassets\\Image\\testimonial-4.jpg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\testimonial-5.jpg",
+      "PackagePath": "staticwebassets\\Image\\testimonial-5.jpg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\testimonial-6.jpg",
+      "PackagePath": "staticwebassets\\Image\\testimonial-6.jpg"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\Image\\up-arrow.png",
+      "PackagePath": "staticwebassets\\Image\\up-arrow.png"
+    },
+    {
       "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\CreateAnnonce.css",
       "PackagePath": "staticwebassets\\css\\CreateAnnonce.css"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\addCv.css",
+      "PackagePath": "staticwebassets\\css\\addCv.css"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\bootstrap-theme.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-theme.css"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\bootstrap-theme.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-theme.css.map"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\bootstrap-theme.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-theme.min.css"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\bootstrap-theme.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap-theme.min.css.map"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\fontawesome-all.min.css",
+      "PackagePath": "staticwebassets\\css\\fontawesome-all.min.css"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\listeAnnonce.css",
+      "PackagePath": "staticwebassets\\css\\listeAnnonce.css"
     },
     {
       "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\profil.css",
@@ -29,12 +221,28 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\css\\swiper.css",
+      "PackagePath": "staticwebassets\\css\\swiper.css"
+    },
+    {
       "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
       "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\CreateAnnonce\\stepByStep.js",
       "PackagePath": "staticwebassets\\js\\CreateAnnonce\\stepByStep.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.min.js"
     },
     {
       "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\demo\\chart-area-demo.js",
@@ -53,6 +261,66 @@
       "PackagePath": "staticwebassets\\js\\demo\\datatables-demo.js"
     },
     {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\jquery-3.4.1.intellisense.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.4.1.intellisense.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\jquery-3.4.1.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.4.1.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\jquery-3.4.1.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.4.1.min.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\jquery-3.4.1.min.map",
+      "PackagePath": "staticwebassets\\js\\jquery-3.4.1.min.map"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\jquery-3.4.1.slim.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.4.1.slim.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\jquery-3.4.1.slim.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.4.1.slim.min.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\jquery-3.4.1.slim.min.map",
+      "PackagePath": "staticwebassets\\js\\jquery-3.4.1.slim.min.map"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\jquery.validate-vsdoc.js",
+      "PackagePath": "staticwebassets\\js\\jquery.validate-vsdoc.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\js\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\js\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\modernizr-2.8.3.js",
+      "PackagePath": "staticwebassets\\js\\modernizr-2.8.3.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\purecounter.min.js",
+      "PackagePath": "staticwebassets\\js\\purecounter.min.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\replaceme.min.js",
+      "PackagePath": "staticwebassets\\js\\replaceme.min.js"
+    },
+    {
       "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\sb-admin-2.js",
       "PackagePath": "staticwebassets\\js\\sb-admin-2.js"
     },
@@ -61,8 +329,16 @@
       "PackagePath": "staticwebassets\\js\\sb-admin-2.min.js"
     },
     {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\scripts.js",
+      "PackagePath": "staticwebassets\\js\\scripts.js"
+    },
+    {
       "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\js\\swiper.min.js",
+      "PackagePath": "staticwebassets\\js\\swiper.min.js"
     },
     {
       "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\lib\\bootstrap\\LICENSE",
@@ -291,6 +567,54 @@
     {
       "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\pdfAttestation\\16.pdf",
+      "PackagePath": "staticwebassets\\pdfAttestation\\16.pdf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\pdfAttestation\\17.pdf",
+      "PackagePath": "staticwebassets\\pdfAttestation\\17.pdf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\pdfAttestation\\18.pdf",
+      "PackagePath": "staticwebassets\\pdfAttestation\\18.pdf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\pdfAttestation\\19.pdf",
+      "PackagePath": "staticwebassets\\pdfAttestation\\19.pdf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\pdfAttestation\\20.pdf",
+      "PackagePath": "staticwebassets\\pdfAttestation\\20.pdf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\pdfAttestation\\21.pdf",
+      "PackagePath": "staticwebassets\\pdfAttestation\\21.pdf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\pdfDiplome\\16.pdf",
+      "PackagePath": "staticwebassets\\pdfDiplome\\16.pdf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\pdfDiplome\\17.pdf",
+      "PackagePath": "staticwebassets\\pdfDiplome\\17.pdf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\pdfDiplome\\18.pdf",
+      "PackagePath": "staticwebassets\\pdfDiplome\\18.pdf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\pdfDiplome\\19.pdf",
+      "PackagePath": "staticwebassets\\pdfDiplome\\19.pdf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\pdfDiplome\\20.pdf",
+      "PackagePath": "staticwebassets\\pdfDiplome\\20.pdf"
+    },
+    {
+      "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\pdfDiplome\\21.pdf",
+      "PackagePath": "staticwebassets\\pdfDiplome\\21.pdf"
     },
     {
       "Id": "D:\\GitHub_clone\\GRH\\GRH\\wwwroot\\vendor\\bootstrap\\js\\bootstrap.bundle.js",

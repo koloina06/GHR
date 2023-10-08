@@ -43,14 +43,14 @@ namespace GRH.Controllers
                 co.Close();
             }
             var listCritere = critere.GetAllCritere(null);
-          //var listSousCritere = sousCritere.GetAllSousCriteres(co);
+          var listSousCritere = sousCritere.GetAllSousCriteres(null);
 
 
 
             @ViewBag.listCritere = listCritere;
 
             Console.WriteLine(listCritere);
-         //   @ViewBag.listSousCritere = listSousCritere;
+           @ViewBag.listSousCritere = listSousCritere;
             return View();
         }
     }

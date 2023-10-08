@@ -59,3 +59,6 @@ D:\s5\gestion\GRH\GRH\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Runtime.Ca
 D:\s5\gestion\GRH\GRH\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\s5\gestion\GRH\GRH\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\s5\gestion\GRH\GRH\obj\Debug\net6.0\GRH.csproj.CopyComplete
+F:\ITU\s5\gestion\GRH\GRH\obj\Debug\net6.0\GRH.dll
+F:\ITU\s5\gestion\GRH\GRH\obj\Debug\net6.0\ref\GRH.dll
+F:\ITU\s5\gestion\GRH\GRH\obj\Debug\net6.0\GRH.pdb

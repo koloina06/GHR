@@ -22,28 +22,32 @@
                                     <input type="date" class="form-control" id="floatingDate">
                                     <label for="floatingDate">Date de naissance</label>
                                 </div>
-                                ss
-
                                 <div class="mb-4 form-check">
-                                @foreach (Critere listcritere in @ViewBag.listCritere)
-                                {
-                                 <input type="text" class="form-control" id="floatingInput">
-                                   <label for="floatingInput">@listcritere.nomCritere</label>
-                                }
+                                    @foreach (Critere critere in @ViewBag.listCritere)
+                                    {
+                                        <input type="text" class="form-control" id="floatingInput" value="@critere.nomCritere" readonly>
+                                        <label for="floatingInput">@critere.nomCritere</label>
+
+                                        <select class="form-control" >
+                                            @foreach (var sousCritere in @ViewBag.listSousCritere)
+                                            {
+                                                <option value="@sousCritere.IdSousCritere">@sousCritere.nomSousCritere</option>
+                                            }
+                                        </select>
+                                    }
                                 </div>
+
+                               
                                   <div class="mb-4 form-floating">
                                     <input type="password" class="form-control" id="floatingInput" placeholder="mail@example.com" name="email">
                                     <label for="floatingInput">Email</label>
                                 </div>
-                                <button type="submit" class="form-control-submit-button">Se connecter</button>
+                                <button type="submit" class="form-control-submit-button">Envoyer</button>
                             </form>
-                            <!-- end of log in form -->
-                        </div> <!-- end of text-container -->
+                            
+                        </div>
                     </div> <!-- end of col -->
                     <div class="col-lg-6">                      
                     </div> <!-- end of col -->
 
-                     <!-- Details 1 -->
-
-               
-     
+                   

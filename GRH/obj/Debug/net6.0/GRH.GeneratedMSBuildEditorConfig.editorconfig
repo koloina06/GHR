@@ -8,49 +8,49 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GRH
 build_property.RootNamespace = GRH
-build_property.ProjectDir = D:\s5\gestion\GRH\GRH\
+build_property.ProjectDir = F:\ITU\s5\gestion\GRH\GRH\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\s5\gestion\GRH\GRH
+build_property.MSBuildProjectDirectory = F:\ITU\s5\gestion\GRH\GRH
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/s5/gestion/GRH/GRH/Views/FrontOffice/Cv.cshtml]
+[F:/ITU/s5/gestion/GRH/GRH/Views/FrontOffice/Cv.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJvbnRPZmZpY2VcQ3YuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/s5/gestion/GRH/GRH/Views/FrontOffice/Index.cshtml]
+[F:/ITU/s5/gestion/GRH/GRH/Views/FrontOffice/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJvbnRPZmZpY2VcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/s5/gestion/GRH/GRH/Views/FrontOffice/Inscription.cshtml]
+[F:/ITU/s5/gestion/GRH/GRH/Views/FrontOffice/Inscription.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJvbnRPZmZpY2VcSW5zY3JpcHRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/s5/gestion/GRH/GRH/Views/FrontOffice/Login.cshtml]
+[F:/ITU/s5/gestion/GRH/GRH/Views/FrontOffice/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJvbnRPZmZpY2VcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/s5/gestion/GRH/GRH/Views/Shared/Error.cshtml]
+[F:/ITU/s5/gestion/GRH/GRH/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/s5/gestion/GRH/GRH/Views/Shared/LayoutFront.cshtml]
+[F:/ITU/s5/gestion/GRH/GRH/Views/Shared/LayoutFront.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExheW91dEZyb250LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/s5/gestion/GRH/GRH/Views/Shared/_ValidationScriptsPartial.cshtml]
+[F:/ITU/s5/gestion/GRH/GRH/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/s5/gestion/GRH/GRH/Views/_ViewImports.cshtml]
+[F:/ITU/s5/gestion/GRH/GRH/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/s5/gestion/GRH/GRH/Views/_ViewStart.cshtml]
+[F:/ITU/s5/gestion/GRH/GRH/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/s5/gestion/GRH/GRH/Views/Shared/_Layout.cshtml]
+[F:/ITU/s5/gestion/GRH/GRH/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-o2qmovr6a6

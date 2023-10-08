@@ -15,6 +15,7 @@
         public String mdp { get; set; }
 
         public String adresse { get; set; }
+        public int genre { get; set; }
 
         public Client() { }
 
@@ -29,4 +30,32 @@
             this.adresse = adresse;
         }
     }
+
+    public void InsertClient(SqlConnection con)
+    {
+     
+            if (con == null)
+            {
+                Connect co = new Connect();
+                con = co.connectDB();
+            }
+
+            string query = "INSERT INTO Client (nom, prenoms, dtn, email, mdp,sexe, adresse) " +
+                           "VALUES (@nom, @prenoms, @dtn, @email, @mdp, @adresse)";
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@nom", this.nom);
+                command.Parameters.AddWithValue("@prenoms", this.prenoms);
+                command.Parameters.AddWithValue("@dtn", this.dtn);
+                command.Parameters.AddWithValue("@email", this.email);
+                command.Parameters.AddWithValue("@mdp", this.mdp);
+                command.Parameters.AddWithValue("@adresse", this.adresse);
+                command.Parameters.AddWithValue("@sexe", this.genre);
+
+
+            command.ExecuteNonQuery();
+            }
+        con.Close();
+        }
 }

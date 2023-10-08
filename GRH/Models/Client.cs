@@ -43,7 +43,7 @@
             string query = "INSERT INTO Client (nom, prenoms, dtn, email, mdp,sexe, adresse) " +
                            "VALUES (@nom, @prenoms, @dtn, @email, @mdp, @adresse)";
 
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlCommand command = new SqlCommand(query, con))
             {
                 command.Parameters.AddWithValue("@nom", this.nom);
                 command.Parameters.AddWithValue("@prenoms", this.prenoms);

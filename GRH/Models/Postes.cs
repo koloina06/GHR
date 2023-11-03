@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 
 namespace GRH.Models
 {
@@ -14,13 +15,8 @@ namespace GRH.Models
         public Postes()
         {
 
+        }
 
-        }
-        public Postes(int idPoste, string nomPoste)
-        {
-            this.idPoste = idPoste;
-            this.nomPoste = nomPoste;
-        }
         public Postes(int idPoste, string nomPoste, Services service)
         {
             this.idPoste = idPoste;
@@ -28,72 +24,99 @@ namespace GRH.Models
             this.service = service;
         }
 
-
-        //public static Postes getPostebyAnnonce(SqlConnection co, int idAnnonce)
-        //{
-        //    if (co == null)
-        //    {
-        //        Connect new_co = new Connect();
-        //        co = new_co.connectDB();
-        //    }
-        //    Postes poste = new Postes();
-        //    Services service = null;
-
-        //    String sql = "SELECT * FROM v_posteAnnonce WHERE idAnnonce = " + idAnnonce;
-        //    Console.WriteLine(sql);
-        //    SqlCommand command = new SqlCommand(sql, co);
-        //    SqlDataReader reader = command.ExecuteReader();
-        //    while (reader.Read())
-        //    {
-        //        int idPoste = (int)reader["idPoste"];
-        //        String nomPoste = (string)reader["nomPoste"];
-        //        poste = new Postes(idPoste, nomPoste);
-        //    }
-        //    reader.Close();
-        //    return poste;
-        //}
-
-
-        public static Postes getPostebyAnnonce(SqlConnection co, int idAnnonce)
+        public static List<Postes> getAllPoste(SqlConnection con)
         {
-            Postes poste = null;
-
-            try
+            var postes = new List<Postes>(); 
+            if (con.State != ConnectionState.Open)
             {
-                if (co == null)
-                {
-                    Connect new_co = new Connect();
-                    co = new_co.connectDB();
+                con = Connect.connectDB();
+            }
+            using (var connection = con) 
+            {
+                var command = new SqlCommand("SELECT * FROM postes", connection);
+                using (var reader = command.ExecuteReader()) {
+                    while (reader.Read()) {
+                        var chaine = new Postes() {
+                            idPoste = (int)reader["idPoste"],
+                            nomPoste = (string)reader["nomPoste"],
+                            service = Services.getById(con,(int)reader["idService"])
+                        };
+                        postes.Add(chaine);
+                    } 
+                    reader.Close();
+                }
+            }
+            return postes;
+        }
+        public static Postes getById(int id,SqlConnection con)
+        {
+            var poste = new Postes();
+            int idS = 0;
+            if (con.State != ConnectionState.Open)
+            {
+                con = Connect.connectDB();
+            }
+            using (var connection = con) 
+            {
+                var command = new SqlCommand("SELECT * FROM postes WHERE idPoste="+id, connection);
+                using (var reader = command.ExecuteReader()) {
+                    while (reader.Read())
+                    {
+                        idS = (int)reader["idService"];
+                        poste = new Postes() {
+                            idPoste = (int)reader["idPoste"],
+                            nomPoste = (string)reader["nomPoste"],
+                        };
+                        
+                    } 
+                    reader.Close();
                 }
 
-                String sql = "SELECT * FROM v_posteAnnonce WHERE idAnnonce = @idAnnonce";
-                SqlCommand command = new SqlCommand(sql, co);
-                command.Parameters.AddWithValue("@idAnnonce", idAnnonce);
-
-                SqlDataReader reader = command.ExecuteReader();
-                
-                if (reader.Read())
-                {
-                    Services services = new Services();
-
-                    int idPoste = (int)reader["idPoste"];
-                    String nomPoste = (string)reader["nomPoste"];
-                    services = services.getServiceByPoste(null, idPoste);
-
-
-                    poste = new Postes(idPoste, nomPoste);
-                    poste.service = services;
-                }
-
-                reader.Close();
+                poste.service = Services.getById( connection,idS);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("An error occurred while getting Poste by Annonce: " + ex.Message);
-            }
-
             return poste;
         }
+        public static List<Postes> getAllPosteByService(int idService, SqlConnection con)
+        {
+            var postes = new List<Postes>(); 
+            
+            if (con.State != ConnectionState.Open)
+            {
+                con = Connect.connectDB();
+            }
+            using (var connection = con) 
+            {
+                var command = new SqlCommand("SELECT * FROM postes WHERE idService=" + idService, connection);
+                using (var reader = command.ExecuteReader()) 
+                {
+                    try
+                    {
+                        while (reader.Read())
+                        {
+                            var chaine = new Postes()
+                            {
+                                idPoste = (int)reader["idPoste"],
+                                nomPoste = (string)reader["nomPoste"],
+                            };
+                            postes.Add(chaine);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
+                    finally
+                    {
+                        reader.Close(); 
+                    }
+                   
+                    
+                }
+            }
+            return postes;
+        }
 
+        
     }
 }

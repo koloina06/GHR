@@ -1,5 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
-
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
+        
 namespace GRH.Models
 {
     public class Annonce
@@ -13,11 +14,16 @@ namespace GRH.Models
         int nombreRecrue;
         public DateTime dateAnnonce { get; set; }
         public int etat { get; set; }
+        
+        //Durée (Determiné , indeterminé , temporaire)
+        
+        //Resaka periode d'essai 
 
         public void setNombreRecrue ()
         {
-            int nombreRecrue = this.volumeTaches/this.nombreRecrue;
-            this.nombreRecrue = nombreRecrue;
+            double nombreRecrue = this.volumeTaches/this.nombreRecrue;
+            
+            this.nombreRecrue = (int) Math.Round(nombreRecrue);
         }
 
         public int getNombreRecrue ()
@@ -38,87 +44,262 @@ namespace GRH.Models
             this.etat = etat;
         }
 
-        public List<Annonce> GetAllAnnonces(SqlConnection co)
+        
+        public void Insert(SqlConnection connection)
         {
-            if (co == null)
-            {
-                Connect con = new Connect();
-                co = con.connectDB();
-            }
-            List<Annonce> annonces = new List<Annonce>();
-            
             try
             {
-             
-                string query = "SELECT * FROM Annonce";
-                    using (SqlCommand command = new SqlCommand(query, co))
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection = Connect.connectDB();
+                }
+
+                string query = "INSERT INTO Annonce (idPoste, descriptions, volumeTache, volumeJourHomme, dateAnnonce, etat) " +
+                               "VALUES ( @idPoste, @descriptions, @volumeTaches, @volumeJourHomme, @dateAnnonce, @etat)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                 
+                    command.Parameters.AddWithValue("@idPoste", postes.idPoste); // Remplacez par la valeur appropriée
+                    command.Parameters.AddWithValue("@descriptions", descriptions);
+                    command.Parameters.AddWithValue("@volumeTaches", volumeTaches);
+                    command.Parameters.AddWithValue("@volumeJourHomme", volumeJourHomme);
+                    command.Parameters.AddWithValue("@dateAnnonce", dateAnnonce);
+                    command.Parameters.AddWithValue("@etat", etat);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
                     {
-                        
-                        SqlDataReader reader = command.ExecuteReader();
-
-                        while (reader.Read())
-                        {
-                            
-                            Annonce annonce = new Annonce
-                            {
-                              idAnnonce = (int)reader["idAnnonce"],
-                              descriptions = (string)reader["descriptions"],
-                              volumeJourHomme = (int)reader["volumeJourHomme"],
-                              volumeTaches = (int)reader["volumeTache"],
-                              postes = Postes.getPostebyAnnonce(null, (int)reader["idAnnonce"])                                
-                            };
-
-                        annonce.postes = annonce.postes ?? new Postes();
-                        annonces.Add(annonce);
-                        }
-                    reader.Close();
+                        Console.WriteLine("Insertion réussie !");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Aucune ligne n'a été insérée.");
                     }
                 }
-            
+            }
             catch (Exception ex)
             {
-               
-                Console.WriteLine("Une erreur s'est produite lors de la récupération des annonces : " + ex.Message);
+                Console.WriteLine("Erreur lors de l'insertion : " + ex.Message);
             }
-            return annonces;
+            finally
+            {
+                connection.Close();
+            }
         }
+        public static Annonce getLastAnnonce(SqlConnection connection)
+        {
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection = Connect.connectDB();
+                }
 
-        //public Annonce getAnnonceById(SqlConnection co, int idAnnonce)
-        //{
-        //    if (co == null)
-        //    {
-        //        Connect new_co = new Connect();
-        //        co = new_co.connectDB();
-        //    }
-        //    Annonce annonce = null;
-        //    SqlCommand command = new SqlCommand("SELECT * FROM annonce WHERE IdAnnonce = " + idAnnonce + "", co);
-        //    SqlDataReader reader = command.ExecuteReader();
-        //    while (reader.Read())
-        //    {
-        //        int id = (int)reader["idAnnonce"];
-        //        string descriptions = (string)reader["descriptions"];
-        //        int vt = (int)reader["volumeTache"];
-        //        int vh = (int)reader["volumeJourHomme"];
-        //        DateTime date = (DateTime)reader["dateAnnonce"];
-        //        int etat = (int)reader["etat"];
-        //        annonce = new Annonce(id, descriptions, vt, vh, date, etat);
-        //    }
-        //    reader.Close();
-        //    return annonce;
-        //}
+                string query = "SELECT TOP 1 * FROM Annonce ORDER BY dateAnnonce DESC";
 
-        public Postes getPoste(SqlConnection co, int idAnnonce)
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        // Créez et retournez l'objet Annonce à partir des données de la base de données
+                        Annonce lastAnnonce = new Annonce
+                        {
+                            idAnnonce = (int)reader["idAnnonce"],
+                            postes = new Postes { idPoste = (int)reader["idPoste"] }, // Vous devez ajuster la création du poste
+                            descriptions = (string)reader["descriptions"],
+                            volumeTaches = (int)reader["volumeTache"],
+                            volumeJourHomme = (int)reader["volumeJourHomme"],
+                            dateAnnonce = (DateTime)reader["dateAnnonce"],
+                            etat = (int)reader["etat"]
+                        };
+                        return lastAnnonce;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur lors de la récupération de la dernière annonce : " + ex.Message);
+            }
+            finally  
+            {
+                connection.Close();
+            }
+            return null; // Retournez null si aucune annonce n'a été trouvée
+        }
+        public static List<Annonce> getAllAnnonce(SqlConnection con)
+        {
+            var annonces = new List<Annonce>();
+            List<int> allIdPost = new List<int>();
+            if (con.State != ConnectionState.Open)
+            {
+                con = Connect.connectDB();
+            }
+            using (var connection = con)
+            {
+                var command = new SqlCommand("SELECT *,volumeTache/volumeJourHomme recru FROM Annonce", connection);
+                using (var reader = command.ExecuteReader())
+                { 
+                    while (reader.Read())
+                    {
+                        var ann = new Annonce()
+                        {
+                            idAnnonce = (int)reader["idAnnonce"],
+                            descriptions = (String)reader["descriptions"],
+                            volumeTaches = (int)reader["volumeTache"],
+                            volumeJourHomme = (int)reader["volumeJourHomme"],
+                            dateAnnonce = (DateTime)reader["dateAnnonce"],
+                            etat = (int)reader["etat"],
+                            nombreRecrue = (int)reader["recru"]
+                        };
+                        annonces.Add(ann);
+                         allIdPost.Add((int)reader["idPoste"]);
+                    }
+                    reader.Close();
+                    int count = 0;    
+                    foreach (Annonce a in annonces)
+                    {
+                        a.postes = Postes.getById(allIdPost[count],con);
+                        count++;
+                    }
+                }
+            }
+            return annonces;           
+        }
+        public static List<Annonce> getAnnonceDispo(SqlConnection con)
+        {
+            var annonces = new List<Annonce>();
+            List<int> allIdPost = new List<int>();
+            if (con.State != ConnectionState.Open)
+            {
+                con = Connect.connectDB();
+            }
+            using (var connection = con)
+            {
+                var command = new SqlCommand("SELECT *,volumeTache/volumeJourHomme recru FROM Annonce WHERE etat=0", connection);
+                using (var reader = command.ExecuteReader())
+                { 
+                    while (reader.Read())
+                    {
+                        var ann = new Annonce()
+                        {
+                            idAnnonce = (int)reader["idAnnonce"],
+                            descriptions = (String)reader["descriptions"],
+                            volumeTaches = (int)reader["volumeTache"],
+                            volumeJourHomme = (int)reader["volumeJourHomme"],
+                            dateAnnonce = (DateTime)reader["dateAnnonce"],
+                            etat = (int)reader["etat"],
+                            nombreRecrue = (int)reader["recru"]
+                        };
+                        annonces.Add(ann);
+                        allIdPost.Add((int)reader["idPoste"]);
+                    }
+                    reader.Close();
+                    int count = 0;    
+                    foreach (Annonce a in annonces)
+                    {
+                        a.postes = Postes.getById(allIdPost[count],con);
+                        count++;
+                    }
+                }
+            }
+            return annonces;           
+        }
+        public void cloturerAnnonce(SqlConnection co, int idAnnonce)
         {
             if (co == null)
             {
-                Connect new_co = new Connect();
-                co = new_co.connectDB();
+                co = Connect.connectDB();
             }
-            Services service = new Services();
-            Postes poste = new Postes();
-            poste = Postes.getPostebyAnnonce(co, idAnnonce);
-            poste.service = service.getServiceByPoste(co, poste.idPoste);
-            return poste;
+            String querry = "update annonce set etat=1 where idAnnonce=" + idAnnonce + "";
+            SqlCommand command = new SqlCommand(querry, co);
+            command.ExecuteNonQuery();
+        }
+
+        public static Annonce getAnnonceById(SqlConnection connection,int idAnnonce)
+        {
+            if (connection == null)
+            {
+                connection = Connect.connectDB();
+            }
+            try
+            {
+                string query = "SELECT TOP 1 *,volumeTache/volumeJourHomme recru FROM Annonce WHERE idAnnonce="+idAnnonce;
+
+                Console.WriteLine(query);
+                Annonce lastAnnonce = new Annonce();
+                int idP = 0;
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        // Créez et retournez l'objet Annonce à partir des données de la base de données
+                        idP = (int)reader["idPoste"];
+                        lastAnnonce = new Annonce
+                        {
+                            idAnnonce = (int)reader["idAnnonce"],
+                            postes = new Postes { idPoste = (int)reader["idPoste"] }, // Vous devez ajuster la création du poste
+                            descriptions = (string)reader["descriptions"],
+                            volumeTaches = (int)reader["volumeTache"],
+                            volumeJourHomme = (int)reader["volumeJourHomme"],
+                            dateAnnonce = (DateTime)reader["dateAnnonce"],
+                            etat = (int)reader["etat"],
+                            nombreRecrue = (int)reader["recru"]
+                        };
+                        
+                       
+                    }
+                    reader.Close();
+                    lastAnnonce.postes = Postes.getById(idP,connection);
+                    return lastAnnonce;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur lors de la récupération de la dernière annonce : " + ex.Message);
+            }
+            return null;
+        }
+
+        public static List<int> getTesteAfaire(int idClient, SqlConnection con)
+        {
+            if (con == null)
+            {
+                con = Connect.connectDB();
+            }
+
+            List<int> res = new List<int>();
+            String sql = "SELECT * FROM etatClient WHERE etat=1 and idClient="+idClient;
+            SqlCommand command = new SqlCommand(sql, con);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int idAnnonce = (int)reader["idAnnonce"];
+                res.Add(idAnnonce);
+            }
+            return res;
+        }
+        
+        public static List<int> getEntretienAFaire(int idClient, SqlConnection con)
+        {
+            if (con == null)
+            {
+                con = Connect.connectDB();
+            }
+
+            List<int> res = new List<int>();
+            String sql = "SELECT * FROM etatClient WHERE etat=2 and dateEntretien>GETDATE() and idClient="+idClient;
+            SqlCommand command = new SqlCommand(sql, con);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int idAnnonce = (int)reader["idAnnonce"];
+                res.Add(idAnnonce);
+            }
+            return res;
         }
     }
 }

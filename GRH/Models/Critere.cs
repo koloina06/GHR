@@ -1,4 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace GRH.Models
 {
@@ -15,88 +18,58 @@ namespace GRH.Models
             this.nomCritere = nomCritere;
         }
 
-        public List<Critere> GetAllCritere(SqlConnection co)
+        public static List<Critere> getAll(SqlConnection con)
         {
-            if (co == null)
+            var criteres = new List<Critere>();
+            if (con.State != ConnectionState.Open)
             {
-                Connect con = new Connect();
-                co = con.connectDB();
+                con = Connect.connectDB();
             }
-            List<Critere> criteres = new List<Critere>();
-
-            try
+            using (var connection = con)
             {
-
-                string query = "SELECT * FROM Critere";
-                using (SqlCommand command = new SqlCommand(query, co))
+                var command = new SqlCommand("SELECT * FROM Critere", connection);
+                using (var reader = command.ExecuteReader())
                 {
-
-                    SqlDataReader reader = command.ExecuteReader();
-
                     while (reader.Read())
                     {
-
-                        Critere critere = new Critere
+                        var critere = new Critere()
                         {
                             idCritere = (int)reader["idCritere"],
                             nomCritere = (string)reader["nomCritere"],
-                            
                         };
-
-                       
                         criteres.Add(critere);
                     }
-                    reader.Close();
+                    reader.Close(); 
                 }
-            }
-
-            catch (Exception ex)
-            {
-
-                Console.WriteLine("Une erreur s'est produite lors de la récupération des Criteres : " + ex.Message);
             }
             return criteres;
         }
 
-        public  Critere getCritereById(SqlConnection co, int idCritere)
+        public static Critere getById(SqlConnection con, int id)
         {
-            Critere critere = null;
-
-            try
+            if (con.State != ConnectionState.Open)
             {
-                if (co == null)
-                {
-                    Connect new_co = new Connect();
-                    co = new_co.connectDB();
-                }
-
-                String sql = "SELECT * FROM critere WHERE idCritere = @idCritere";
-                SqlCommand command = new SqlCommand(sql, co);
-                command.Parameters.AddWithValue("@idCritere", idCritere);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    
-
-                    int idcriteres = (int)reader["idPoste"];
-                    String nomCritere = (string)reader["nomCritere"];
-                   
-
-
-                    critere = new Critere(idcriteres, nomCritere);
-                  
-                }
-
-                reader.Close();
+                con = Connect.connectDB();
             }
-            catch (Exception ex)
+            using (var connection = con)
             {
-                Console.WriteLine("An error occurred while getting Poste by Annonce: " + ex.Message);
-            }
+                var command = new SqlCommand("SELECT * FROM Critere WHERE idCritere = @id", connection);
+                command.Parameters.AddWithValue("@id", id);
 
-            return critere;
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Critere()
+                        {
+                            idCritere = (int)reader["idCritere"],
+                            nomCritere = (string)reader["nomCritere"],
+                        };
+                    }
+                    reader.Close(); 
+                }
+            }
+            return null; // Retourne null si aucun critère avec cet ID n'a été trouvé.
         }
     }
 }

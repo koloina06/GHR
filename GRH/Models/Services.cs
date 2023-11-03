@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 
 namespace GRH.Models
 {
@@ -21,49 +22,83 @@ namespace GRH.Models
             this.email = email;
             this.mdp = mdp;
         }
-
-        public Services getServiceById(SqlConnection co, int idService)
+        
+        public static List<Services> getAllService(SqlConnection con)
         {
-            if (co == null)
+            var service = new List<Services>(); 
+            if (con.State != ConnectionState.Open)
             {
-                Connect new_co = new Connect();
-                co = new_co.connectDB();
+                con = Connect.connectDB();
             }
-            Services service = new Services();
-            SqlCommand command = new SqlCommand("SELECT * FROM services WHERE idService = " + idService + "", co);
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            using (var connection = con) 
             {
-                int id = (int)reader["idService"];
-                string nomService = (string)reader["nomService"];
-                string email = (string)reader["email"];
-                string mdp = (string)reader["mdp"];
-                service = new Services(id, nomService, email, mdp);
+                var command = new SqlCommand("SELECT * FROM Services", connection);
+                using (var reader = command.ExecuteReader()) {
+                    while (reader.Read()) {
+                        var serv = new Services() {
+                            idService = (int)reader["idService"],
+                            nomService = (string)reader["nomService"],
+                            email = (String)reader["email"],
+                            mdp = (String) reader["mdp"]
+                        };
+                        service.Add(serv);
+                    } 
+                    reader.Close(); 
+                }
             }
-            reader.Close();
             return service;
         }
-
-        public Services getServiceByPoste(SqlConnection co, int idPoste)
+        public static Services getById(SqlConnection con , int id)
         {
-            if (co == null)
+            var service = new List<Services>(); 
+            if (con.State != ConnectionState.Open)
             {
-                Connect new_co = new Connect();
-                co = new_co.connectDB();
+                con = Connect.connectDB();
             }
-            Services service = null;
-            SqlCommand command = new SqlCommand("SELECT * FROM v_servicePoste WHERE idPoste = " + idPoste + "", co);
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            using (var connection = con) 
             {
-                int idService = (int)reader["idService"];
-                string nomService = (string)reader["nomService"];
-                string email = (string)reader["email"];
-                string mdp = (string)reader["mdp"];
-                service = new Services(idService, nomService, email, mdp);
+               
+                var command = new SqlCommand("SELECT * FROM Services WHERE idService="+id, connection);
+                using (var reader = command.ExecuteReader()) {
+                    while (reader.Read()) {
+                        var serv = new Services() {
+                            idService = (int)reader["idService"],
+                            nomService = (string)reader["nomService"],
+                            email = (String)reader["email"],
+                            mdp = (String) reader["mdp"]
+                        };
+                        return serv;
+                    } 
+                    reader.Close(); 
+                }
             }
-            reader.Close();
-            return service;
+            return null;
+        }
+
+        public static Services checkLogin(String email, String mdp, SqlConnection con)
+        {
+            if (con.State != ConnectionState.Open)
+            {
+                con = Connect.connectDB();
+            }
+            using (var connection = con) 
+            {
+                var command = new SqlCommand("SELECT * FROM Services WHERE email='"+email+"' and mdp='"+mdp+"'", connection);
+                using (var reader = command.ExecuteReader()) {
+                    if (reader.Read())
+                    {
+                        var serv = new Services() {
+                            idService = (int)reader["idService"],
+                            nomService = (string)reader["nomService"],
+                            email = (String)reader["email"],
+                            mdp = (String) reader["mdp"]
+                        };
+                        return serv;
+                    } 
+                    reader.Close(); 
+                }
+            }
+            return null;
         }
     }
 }

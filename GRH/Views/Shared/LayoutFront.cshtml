@@ -25,6 +25,8 @@
     <link href="~/css/fontawesome-all.min.css" rel="stylesheet">
     <link href="~/css/swiper.css" rel="stylesheet">
     <link href="~/css/styles.css" rel="stylesheet">
+     <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
+     <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Favicon  -->
     <link rel="icon" href="~/Image/favicon.png">
@@ -48,7 +50,7 @@
             <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav ms-auto navbar-nav-scroll">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="https://localhost:7248/FrontOffice/Index">Accueil</a>
+                        <a class="nav-link active" aria-current="page" href="https://localhost:7248/FrontOffice/ListeAnnonce">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#features">Annonces</a>
@@ -66,9 +68,64 @@
                             <li><a class="dropdown-item" href="privacy.html">Privacy Policy</a></li>
                         </ul>
                     </li>
+                    @{
+                        List<int> allA = Annonce.getTesteAfaire(int.Parse(@Context.Session.GetString("userSession")),Connect.connectDB());
+                        List<int> allE = Annonce.getEntretienAFaire(int.Parse(@Context.Session.GetString("userSession")),Connect.connectDB()); 
+                    }
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bell fa-fw"></i>
+                            <!-- Counter - Alerts -->
+                            @if (allA.Count > 0 || allE.Count>0)
+                            {
+                                <span class="badge badge-danger badge-counter">@allA.Count+@allE.Count</span>   
+                            }
+                        </a>
+                        <!-- Dropdown - Alerts -->
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                            <h6 class="dropdown-header">
+                                Notifications
+                            </h6>
+                           
+                            @foreach (int a in allA)
+                            {
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">@Annonce.getAnnonceById(Connect.connectDB(),a).descriptions</div>
+                                        <span class="font-weight-bold"><a href="https://localhost:7248/FrontOffice/QCM?idAnnonce=@Annonce.getAnnonceById(Connect.connectDB(),a).idAnnonce">Votre teste!!!</a></span>
+                                    </div>
+                                </a>   
+                            } @foreach (int e in allE)
+                              {
+                                  <a class="dropdown-item d-flex align-items-center" href="#">
+                                      <div class="mr-3">
+                                          <div class="icon-circle bg-primary">
+                                              <i class="fas fa-file-alt text-white"></i>
+                                              </div>
+                                      </div>
+                                      <div>
+                                          <div class="small text-gray-500">Entretien le @Cv.getDateEntretien(int.Parse(@Context.Session.GetString("userSession")),e,Connect.connectDB())</div>
+                                      </div>
+                                  </a>
+                              }
+                        </div>
+                    </li>
                 </ul>
                 <span class="nav-item">
-                    <a class="btn-outline-sm" href="https://localhost:7248/FrontOffice/Login">Se Connecter</a>
+                      @if (@Context.Session.GetString("userSession") != null)
+                      {
+                          <a class="btn-outline-sm">@Clients.getClientsById(int.Parse(@Context.Session.GetString("userSession")),Connect.connectDB()).nom @Clients.getClientsById(int.Parse(@Context.Session.GetString("userSession")),Connect.connectDB()).prenoms</a>
+                          <a class="btn-outline-sm" href="https://localhost:7248/FrontOffice/logout/"><i class="fas fa-sign-out-alt "></i></a>
+                      }
+                      else
+                      {
+                          <a class="btn-outline-sm" href="https://localhost:7248/FrontOffice/Login">Se Connecter</a>   
+                      }
                 </span>
             </div> <!-- end of navbar-collapse -->
         </div> <!-- end of container -->
@@ -163,6 +220,11 @@
     <script src="~/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
     <script src="~/js/purecounter.min.js"></script> <!-- Purecounter counter for statistics numbers -->
     <script src="~/js/replaceme.min.js"></script> <!-- ReplaceMe for rotating text -->
-    <script src="~/js/scripts.js"></script> <!-- Custom scripts -->
+<script src="~/js/scripts.js"></script> <!-- Custom scripts -->
+ <script src="~/vendor/jquery/jquery.min.js"></script>
+  <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
 </body>
 </html>

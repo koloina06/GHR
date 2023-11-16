@@ -64,3 +64,8 @@ D:\GitHub_clone\GRH\GRH\obj\Debug\net6.0\refint\GRH.dll
 D:\GitHub_clone\GRH\GRH\obj\Debug\net6.0\GRH.pdb
 D:\GitHub_clone\GRH\GRH\obj\Debug\net6.0\GRH.genruntimeconfig.cache
 D:\GitHub_clone\GRH\GRH\obj\Debug\net6.0\ref\GRH.dll
+D:\GitHub_clone\GRH\GRH\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\GitHub_clone\GRH\GRH\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\GitHub_clone\GRH\GRH\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\GitHub_clone\GRH\GRH\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\GitHub_clone\GRH\GRH\obj\Debug\net6.0\GRH.MvcApplicationPartsAssemblyInfo.cs

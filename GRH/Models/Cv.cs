@@ -104,7 +104,7 @@ namespace GRH.Models
             
             int note = 0;
             
-            SqlCommand command = new SqlCommand("select sum(coeff) somme FROM detailsCV dc join cv on dc.idCv=cv.idCv JOIN critereCoef cc on dc.idSousCritere=cc.idSousCritere where cv.idAnnonce="+idAnnonce+" and cc.idAnnonce="+idAnnonce+" and cv.idAnnonce="+idAnnonce+"and cv.idCv="+idCv+" group by cv.idCv",co);
+            SqlCommand command = new SqlCommand("select sum(coef) somme FROM detailsCV dc join cv on dc.idCv=cv.idCv JOIN critereCoef cc on dc.idSousCritere=cc.idSousCritere where cv.idAnnonce="+idAnnonce+" and cc.idAnnonce="+idAnnonce+" and cv.idAnnonce="+idAnnonce+"and cv.idCv="+idCv+" group by cv.idCv",co);
             
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -317,7 +317,7 @@ namespace GRH.Models
 
         public void inserer(SqlConnection con)
         {
-            String sql = "INSERT INTO Cv VALUES ("+this.client.idClient+","+this.annonce.idAnnonce+",'"+this.pdfDiplome+"','"+this.pdfAttestation+"')";
+            String sql = "INSERT INTO Cv VALUES ("+this.annonce.idAnnonce+","+this.client.idClient+",'"+this.pdfDiplome+"','"+this.pdfAttestation+"')";
             Console.WriteLine(sql);
             
             if (con == null)

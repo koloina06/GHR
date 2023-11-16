@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.Data.SqlClient;
 
+
 namespace GRH.Controllers
 {
     public class HomeController : Controller
@@ -361,8 +362,198 @@ namespace GRH.Controllers
             return RedirectToAction("Index", "Home");
         }
         
+        public IActionResult toAddContratEssai()
+        {
+            SqlConnection con = Connect.connectDB();
+            int idClient = int.Parse(Request.Query["idClient"]);
+            int idAnnonce = int.Parse(Request.Query["idAnnonce"]);
+
+
+            int idRh = Int32.Parse(HttpContext.Session.GetString("sess"));
+
+            List<Avantage> allAvantages = Avantage.getAll(con);
+
+           // Clients c = Clients.getClientsById(idClient, con);
+            //RH rh = RH.GetById(idRh,con);
+
+            @ViewBag.idClient = idClient;
+            @ViewBag.idAnnonce = idAnnonce;
+            @ViewBag.allAvantage = allAvantages;
+            
+            return View("~/Views/Home/AddContratEssai.cshtml");
+        }
         
-        
+        [HttpPost]
+        public IActionResult AddContratEssai()
+        {
+            SqlConnection con = Connect.connectDB();
+            int idClient = int.Parse(Request.Form["idClient"]);
+            int idAnnonce = int.Parse(Request.Form["idAnnonce"]);
+            
+            int idRh = Int32.Parse(HttpContext.Session.GetString("sess"));
+
+            Clients c = Clients.getClientsById(idClient, con);
+            RH rh = RH.GetById(idRh,con);
+            con = Connect.connectDB();
+            Annonce an = Annonce.getAnnonceById(con,idAnnonce);
+            
+            con = Connect.connectDB();
+            TypeContrat t = TypeContrat.getById(1,con);
+
+            String addresse = Request.Form["addresse"];
+                
+            String debutS = Request.Form["debut"];
+            DateTime debut;
+            String finS = Request.Form["fin"];
+            DateTime fin;
+            
+
+            double salaire = double.Parse(Request.Form["salaire"]);
+            
+            if (DateTime.TryParse(debutS, out debut) && DateTime.TryParse(finS, out fin)) 
+            {
+                
+                Console.WriteLine(c.nom);
+                Console.WriteLine(rh.email);
+                Console.WriteLine(an.postes.nomPoste);
+                
+                
+                Contrat cont = new Contrat(1,c,addresse,debut,fin,salaire,rh,an.postes,t);
+                cont.save(con);
+                
+                List<Avantage> allAvantage = Avantage.getAll(con);
+
+                Contrat contrat = Contrat.getLastContrat(con);
+                
+                foreach (Avantage av in allAvantage)
+                {
+                    int a = av.idAvantage;
+                    if(int.TryParse(Request.Form[av.idAvantage.ToString()],out a))
+                    {
+                          ContratAvantage.insert(av.idAvantage,contrat.idContrat,con);
+                    }
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult toListeContrat()
+        {
+            SqlConnection con = Connect.connectDB();
+
+            int idType = int.Parse(Request.Query["idType"]);
+            
+            List<Contrat> all = new List<Contrat>();
+            all = Contrat.getAllByType(idType,con);
+
+            @ViewBag.allContrat = all;
+
+            return View("~/Views/Home/ListeContratEssai.cshtml");
+
+        }
+
+        public IActionResult toAnotherContrat()
+        {
+            SqlConnection con = Connect.connectDB();
+
+            int idContrat = int.Parse(Request.Query["idContrat"]);
+
+            Contrat contrat = Contrat.getById(idContrat,con);
+
+            List<TypeContrat> allType = TypeContrat.getAll(con);
+            List<Avantage> allAvantages = Avantage.getAll(con);
+            
+            @ViewBag.idClient = contrat.clients.idClient;
+            @ViewBag.idPoste = contrat.poste.idPoste;
+            @ViewBag.allAvantage = allAvantages;
+            @ViewBag.allType = allType;
+            
+            return View("~/Views/Home/AddAnotherContrat.cshtml");
+        }
+        [HttpPost]
+        public IActionResult AddAnotherContrat()
+        {
+            SqlConnection con = Connect.connectDB();
+            int idClient = int.Parse(Request.Form["idClient"]);
+            int idPoste = int.Parse(Request.Form["idPoste"]);
+            
+            int idRh = Int32.Parse(HttpContext.Session.GetString("sess"));
+            
+            int idType = int.Parse(Request.Form["idTypeContrat"]);
+
+            Clients c = Clients.getClientsById(idClient, con);
+            RH rh = RH.GetById(idRh,con);
+            con = Connect.connectDB();
+            Postes p = Postes.getById(idPoste, con);
+            
+            con = Connect.connectDB();
+            TypeContrat t = TypeContrat.getById(idType,con);
+
+            String addresse = Request.Form["addresse"];
+                
+            String debutS = Request.Form["debut"];
+            DateTime debut;
+            String finS = Request.Form["fin"];
+            DateTime fin;
+
+            double salaire = double.Parse(Request.Form["salaire"]);
+            
+            Mpiasa mp = new Mpiasa(1,c,DateTime.Now,DateTime.Now,p);
+            mp.saveMpiasa(con);
+            
+            if (DateTime.TryParse(debutS, out debut) ) 
+            {
+                if (t.idTypeContrat == 3)
+                {
+                    DateTime temp = new DateTime();
+                    Contrat cont = new Contrat(1,c,addresse,debut,temp,salaire,rh,p,t); 
+                    cont.save(con);
+                }else
+                {
+                    if (DateTime.TryParse(finS, out fin))
+                    {
+                        Contrat cont = new Contrat(1,c,addresse,debut,fin,salaire,rh,p,t); 
+                        cont.save(con);
+                    }
+                }
+                
+                List<Avantage> allAvantage = Avantage.getAll(con);
+                Contrat contrat = Contrat.getLastContrat(con);
+                
+                foreach (Avantage av in allAvantage)
+                {
+                    int a = av.idAvantage;
+                    if(int.TryParse(Request.Form[av.idAvantage.ToString()],out a))
+                    {
+                        ContratAvantage.insert(av.idAvantage,contrat.idContrat,con);
+                    }
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult toListMpiasa()
+        {
+            SqlConnection con = Connect.connectDB();
+            List<Mpiasa> allMpiasa = Mpiasa.getAll(con);
+            @ViewBag.allMpiasa = allMpiasa;
+
+            return View("~/Views/Home/ListeMpiasa.cshtml");
+        }
+
+        public IActionResult getAllDemandeConge()
+        {
+            SqlConnection con = Connect.connectDB();
+
+            List<DemandeConge> allDm = DemandeConge.getAllEnCours(con);
+
+
+            @ViewBag.allDm = allDm;
+
+            return View("~/Views/Home/ListeDmConge.cshtml");
+        }
       
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Data;
+using System.Drawing;
 using Microsoft.Data.SqlClient;
 
 namespace GRH.Models
@@ -90,7 +91,7 @@ namespace GRH.Models
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                note = int.Parse(reader["coeff"].ToString());
+                note = int.Parse(reader["coef"].ToString());
             }
             reader.Close();
             return note;
@@ -136,7 +137,7 @@ namespace GRH.Models
 
         public static Clients getClientsById(int id, SqlConnection con)
         {
-            if (con == null)
+            if (con == null || con.State == ConnectionState.Closed)
             {
                 con = Connect.connectDB();
             }

@@ -23,6 +23,7 @@
                             <th>Sous-critère</th>
                             <th>Date Entretien</th>
                             <th>Note Entretien</th>
+                            <th>Ajouter Contrat d'essai</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -50,6 +51,16 @@
                                     {
                                         @cv.client.note
                                     }</td>
+                                <td>
+                                    @if (@Contrat.dejaContrat(cv, Connect.connectDB())==false)
+                                    {
+                                        <a href="https://localhost:7248/Home/toAddContratEssai?idClient=@cv.client.idClient&idAnnonce=@ViewBag.ann.idAnnonce">Ajouter Contrat Essai</a>   
+                                    }
+                                    else
+                                    {
+                                        <a>Deja!</a>
+                                    }
+                                </td>
                             </tr>
                             @foreach (var details in cv.sousCritere)
                             {

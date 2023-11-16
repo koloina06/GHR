@@ -28,7 +28,7 @@ namespace GRH.Models
                     connection = Connect.connectDB();
                 }
 
-                string query = "INSERT INTO CritereCoef (idSousCritere, coeff, idAnnonce) " +
+                string query = "INSERT INTO CritereCoef (idSousCritere, coef, idAnnonce) " +
                                "VALUES (@idSousCritere, @coef, @idAnnonce)";
 
                 using (SqlCommand command = new SqlCommand(query, connection))

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 
+
 namespace GRH.Controllers
 {
     public class FrontOfficeController : Controller
@@ -229,6 +230,46 @@ namespace GRH.Controllers
             int idCv = Models.Cv.getIdCvByClientAnnonce(idClient,idAnnonce,co);
             Clients.updateNoteTest(idCv,note,co);
             Clients.updateEtatEfaTest(idAnnonce,idClient,co);
+            
+            return RedirectToAction("ListeAnnonce", "FrontOffice");
+        }
+
+        public IActionResult toDemandeConge()
+        {
+            SqlConnection con = Connect.connectDB();
+
+            List<Raison> allRaison = Raison.getAll(con);
+
+            int idClient = int.Parse(HttpContext.Session.GetString("userSession"));
+            
+            
+            Mpiasa mp = Mpiasa.getByIdClient(idClient,con);
+
+            @ViewBag.restant = mp.congeRestant(con);
+            @ViewBag.allRaison = allRaison;
+            return View("DemandeConge");
+        }
+
+        [HttpPost]
+        public IActionResult demandeConge()
+        {
+            SqlConnection con = Connect.connectDB();
+            
+            
+            int idClient = int.Parse(HttpContext.Session.GetString("userSession"));
+            Mpiasa mpiasa = Mpiasa.getByIdClient(idClient, con);
+
+            int idRaison = int.Parse(Request.Form["idRaison"]);
+            Raison rs = Raison.getById(idRaison,con);
+
+            DateTime debut;
+            DateTime fin;
+            
+            if (DateTime.TryParse(Request.Form["debut"], out debut) && DateTime.TryParse(Request.Form["fin"], out fin))
+            {
+                DemandeConge dm = new DemandeConge(1,mpiasa,debut,fin,rs,0);
+                dm.save(con);
+            }
             
             return RedirectToAction("ListeAnnonce", "FrontOffice");
         }

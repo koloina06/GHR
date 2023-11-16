@@ -301,5 +301,26 @@ namespace GRH.Models
             }
             return res;
         }
+
+        public static bool estPostule(int idAnnonce, int idClient, SqlConnection con)
+        {
+            if (con == null)
+            {
+                con = Connect.connectDB();
+            }
+
+            String sql = "SELECT * FROM etatClient WHERE idClient="+idClient+" and idAnnonce="+idAnnonce;
+
+            SqlCommand command = new SqlCommand(sql,con);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                return true;
+            }
+            reader.Close();
+            return false;
+        }
     }
 }
